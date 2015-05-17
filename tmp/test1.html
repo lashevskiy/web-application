@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Forms</title>
+  <script>
+    var form;
+    function initiate(){
+      var button = document.getElementById("send");
+      button.addEventListener("click", sendit);
+      form = document.querySelector("form[name='information']");
+      form.addEventListener("invalid", validation, true);
+      form.addEventListener("input", checkval);
+    }
+    function validation(e){
+      var elem = e.target;
+      elem.style.background = '#FFDDDD';
+    }
+    function sendit(){
+      var valid = form.checkValidity();
+      if(valid){
+        form.submit();
+      }
+    }
+    function checkval(e){
+      var elem = e.target;
+      if(elem.validity.valid){
+        elem.style.background = '#FFFFFF';
+      }else{
+        elem.style.background = '#FFDDDD';
+      }
+    }
+    addEventListener("load", initiate);
+  </script>
+</head>
+<body>
+  <section>
+    <form name="information" method="get" action="file.php">
+      <label for="nickname">Nickname: </label> 
+      <input pattern="[A-Za-z]{3,}" name="nickname" id="nickname" maxlength="10" required>
+      <label for="myemail">Email: </label> 
+      <input type="email" name="myemail" id="myemail" required>
+      <input type="button" id="send" value="Sign Up">
+    </form>
+  </section>
+</body>
+</html>
