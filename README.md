@@ -8,4 +8,5 @@ This is web application (airline's website).
 <br>3. In web browswer write next: localhost/web-application/php/admin/setup.php.
 <br>4. This file create database. Now you can use application.
 <br>5. Go to localhost/web-application/php/index.php 
+
 <br>! Change the user name and password from the database in file ../php/admin/setup.php if necessary. The default username is root and no password.
