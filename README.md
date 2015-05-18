@@ -1,7 +1,7 @@
 # web-application
 This is web application (airline's website).  
 <br>To create them I use HTML, CSS, JS (jquery), AJAX, PHP, MySQL.
-<br>This web application need database. Firstly create database in phpmyadmin (MySQL) and when database is done you can use this application.
+<br>This web application needs database. Firstly create database in phpmyadmin (MySQL) and when database is done you can use this application.
 <br>=============== Getting Started ===================
 <br>1. To create database use next php-file (/php/admin/setup.php).
 <br>2. Put web application folder (web-application) on your localserver.
