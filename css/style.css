@@ -1,5 +1,5 @@
 body {
-	background: #efefef url(/MySite/images/bg-light-4793.png); 
+	background: #efefef url(../images/bg-light-4793.png); 
 	font:16px/24px Arial, Tahoma, sans-serif; 
 	color: #272727; 
 	height: 100%;
@@ -159,17 +159,17 @@ div.topmenu {
 .account a.account_img {
 	width: 42px; 
     height: 49px;
-	background: url('/MySite/images/12.png');
+	background: url('../images/12.png');
 	display: inline-block;
 }
 .account a.account_img:hover {
 	transition: all 0.4s;
-	background: url('/MySite/images/11.png');
+	background: url('../images/11.png');
 }
 
 a.account_in:hover ~ a.account_img {
 	transition: all 0.4s;
-	background: url('/MySite/images/11.png');
+	background: url('../images/11.png');
 }  
 
 
@@ -480,35 +480,35 @@ footer {
 footer .connect a#vkontakte {
 	width: 35px; 
     height: 35px;
-    background: url("/MySite/images/icon-1/VK.png");
+    background: url("../images/icon-1/VK.png");
     background-size: cover; 
 	display: inline-block;
 }
 footer .connect a#facebook {
 	width: 35px; 
     height: 35px;
-    background: url("/MySite/images/icon-1/FB.png");
+    background: url("../images/icon-1/FB.png");
     background-size: cover; 
 	display: inline-block;
 }
 footer .connect a#instagram {
 	width: 35px; 
     height: 35px;
-    background: url("/MySite/images/icon-1/Twitter.png");
+    background: url("../images/icon-1/Twitter.png");
     background-size: cover; 
 	display: inline-block;
 }
 footer .connect a#odnoklasniki {
 	width: 35px; 
     height: 35px;
-    background: url("/MySite/images/icon-1/Odnoklasniki.png");
+    background: url("../images/icon-1/Odnoklasniki.png");
     background-size: cover; 
 	display: inline-block;
 }
 footer .connect a#gmail {
 	width: 35px; 
     height: 35px;
-    background: url("/MySite/images/icon-1/G.png");
+    background: url("../images/icon-1/G.png");
     background-size: cover; 
 	display: inline-block;
 }
@@ -676,7 +676,7 @@ td div {
 
 
 div.green {
-	background: #2c9e52 url("/MySite/images/spring-2.png") no-repeat 100% 0; 
+	background: #2c9e52 url("../images/spring-2.png") no-repeat 100% 0; 
 	width: 175px;	
 	height: 130px;
 	padding: 20px 20px;
@@ -1183,5 +1183,9 @@ div.clear {clear:both;}
 }
 
 .info {
-	width: 600px;
+	width: 620px;
 }
+
+.info_tickets {
+	width: 660px;
+} 
