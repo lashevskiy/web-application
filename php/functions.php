@@ -34,57 +34,13 @@
   function sanitizeString($var)
   {
     global $connection;
-    $var = strip_tags($var);
-    $var = htmlentities($var);
-    $var = stripslashes($var);
+    $var = trim($var); //Удаляем пробелы
+    $var = strip_tags($var); //Удаляет HTML и PHP-теги из строки
+    $var = htmlentities($var); //Преобразует все возможные символы в соответствующие HTML-сущности
+    $var = stripslashes($var); //Удаляет экранирование символов
+    $var = trim($var);
     return $connection->real_escape_string($var);
   }
 
-  function showProfile($user)
-  {
-    if (file_exists("$user.jpg"))
-      echo "<img src='$user.jpg' style='float:left;'>";
-
-    $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
-
-    if ($result->num_rows)
-    {
-      $row = $result->fetch_array(MYSQLI_ASSOC);
-      echo stripslashes($row['text']) . "<br style='clear:left;'><br>";
-    }
-  }
-
-function found_path($flight_from, $kuda_idu, $found)
-{
-    echo "<br>------------------------------<br>";
-    echo "$flight_from -- $kuda_idu -- $found<br>";                            
-    $query = "SELECT DISTINCT flight_from, flight_to FROM flights WHERE flight_from = '$flight_from'";
-    $result = queryMysql($query);
-    $num    = $result->num_rows;
-    echo "$num <br>";                    
-    for ($j = 0 ; $j < $num ; ++$j)
-    {   
-        $row = $result->fetch_array(MYSQLI_ASSOC);  
-        $kuda_idu_new = $row['flight_to'];        
-        echo "$j --- $flight_from -- $kuda_idu_new -- $found<br>";                            
-
-        if($kuda_idu_new == $found)
-        {
-            echo "OKKKKK!";
-            break;
-        }         
-        else         
-        {   
-            if($kuda_idu != $kuda_idu_new)
-            {                   
-                found_path($kuda_idu_new, $flight_from, $found);
-            }
-            else 
-            {
-                echo "уже был в: $kuda_idu <br>";
-            }
-        }
-    }           
-}
 
 ?>

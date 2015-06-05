@@ -1,3 +1,5 @@
+<script src="../javascript/md5.min.js"></script>
+<script src="../javascript/auth2.js"></script>
 <header class="header">
 	<div class="middle">
 		<div class="">				
@@ -23,27 +25,6 @@
 	      	 			<a class="submit in" href="../php/exit.php">Выйти</a>												
 					</div>
 _END;
-//  					echo<<<_OUT
-//  			
-//                <div class="right_exit">                
-//                	<a class="submit" href="exit.php">Выйти</a>
-//                </div>												
-//				<div id="menu_body">
-//                    <ul>
-//                        <li>
-//                            <div class="avatar-in-header">                            	
-//                            	<img class="round" src="/MySite/images/12.png">                            	
-//                            </div>
-//                            <ul>
-//                            	<li><a href="account.php">Личные данные</a></li>
-//                                <li><a href="my_tickets.php">Мои бронирования</a></li>                               
-//                            </ul>
-//                        </li>
-//                    </ul>
-//                </div>
-//            
-//
-//_OUT;
 
   				
   				}
@@ -52,9 +33,9 @@ _END;
   					echo <<<_END
 			      	<div class="topmenu">
 						<aside class="login">
-							<form method="post" action="login.php">
-								<input type="text" name="username" placeholder="Логин" class="input width_header" required>
-								<input type="password" name="password" placeholder="Пароль" class="input width_header" required>						
+							<form method="post" action="login.php" onsubmit="ajax2(this)">
+								<input type="text" name="username" id="username2" placeholder="Логин" class="input width_header" required pattern="[a-zA_Z0-9._]{5,}" title="Не менее 5 символов, содержащих символы из нижнего или верхнего регистра, цифры и символы '_', '.'">
+								<input type="password" name="password" id="password2" placeholder="Пароль" class="input width_header" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Не менее восьми символов, содержащих хотя бы одну цифру и символы из верхнего и нижнего регистра.">														
 								<input type="submit" value="Войти" class="submit">
 							</form>
 						</aside>								

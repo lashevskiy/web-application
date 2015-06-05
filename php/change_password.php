@@ -51,7 +51,7 @@
 
     	$error = "";	
 		echo "<h2>Изменение пароля</h2>";	
-   		if (isset($_POST['save']) and $_POST['save']==true) 
+   		if (isset($_POST['save']) and $_POST['save']==tru`e) 
     	{      
     		$user_id = $_SESSION['user_id'];	
 
@@ -95,13 +95,13 @@ _OUT;
 echo<<<_OUT
 					<form method="POST" action="change_password.php">																		
 						<div>
-							<input type="password" class="input width_2" name="password_old" placeholder="Старый пароль" required>						
+							<input type="password" class="input width_2" name="password_old" placeholder="Старый пароль" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Пароль должен содержать как минимум одну цифру и одну заглавную и строчную букву, и состоять по крайней мере из 8 или более символов." required>						
 						</div>
 						<div>
-							<input type="password" class="input width_2" name="password" placeholder="Новый пароль" required>						
+							<input type="password" class="input width_2" name="password" placeholder="Новый пароль" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Пароль должен содержать как минимум одну цифру и одну заглавную и строчную букву, и состоять по крайней мере из 8 или более символов." required>						
 						</div>
 						<div>
-							<input type="password" class="input width_2" name="password_repeat" placeholder="Повторите пароль, чтобы не ошибиться" required>						
+							<input type="password" class="input width_2" name="password_repeat" placeholder="Повторите пароль, чтобы не ошибиться" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Пароль должен содержать как минимум одну цифру и одну заглавную и строчную букву, и состоять по крайней мере из 8 или более символов." required>						
 						</div>							
 						<div class="width_3">
 							<input type="hidden" name="save" value="true">

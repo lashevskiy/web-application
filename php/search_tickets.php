@@ -20,9 +20,7 @@ alert(name);
 var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
 
   if (str.length==0) { 
-
-    //document.getElementById("livesearch").innerHTML="";    
-    //document.getElementById("livesearch").style.border="0px";
+   
     return;
   }
   else if(str.length>0)
@@ -39,8 +37,6 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
           {        
               
             document.getElementById(name).innerHTML=xmlhttp.responseText;
-           // document.getElementById("livesearch").size=5;
-            //document.getElementById("resultTable").style.border="1px solid #A5ACB2";
           }
         }
         xmlhttp.open("GET","search.php?"+params,true);
@@ -56,22 +52,7 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
   
 <?php
     require_once "functions.php";
-    //echo "<datalist id='flight_from_list'>";
-        //$query = "SELECT DISTINCT flight_from FROM flights";
-        //$result = queryMysql($query);
-        //$num    = $result->num_rows;                    
-        //for ($j = 0 ; $j < $num ; ++$j)
-        //{       
-        //    $row = $result->fetch_array(MYSQLI_ASSOC);                              
-        //                    
-        //    echo "<option value=".$row['flight_from']." label=".$row['flight_from'].">";                
-        //}   
-   //     echo "</datalist>";
-
-
-  //echo  "<input type='text' name='flight_from' list='flight_from_list' placeholder='Откуда'' onkeyup='showResult(this)' autocomplete='off'>";
- //echo "<br>";
-
+   
 ?>      
         <datalist id='flight_from'></datalist>
         <input type='text' name='flight_from' list='flight_from' placeholder='Откуда' onkeypress='showResult(this)' autocomplete='off'>

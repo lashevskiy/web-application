@@ -24,9 +24,7 @@
 			$flight_date = $_GET['flight_date'];	
 			
 			$user_id = $_SESSION['username'];
-			//$query = "SELECT * FROM tickets WHERE user_id = (SELECT user_id FROM users WHERE username='$username')";	
-			//$result = queryMysql($query);					
-			//$num = $result->num_rows;
+		
 		}
 		else
 		{				

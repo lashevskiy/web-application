@@ -9,6 +9,31 @@
 	<link rel="shortcut icon" type="image/x-icon" href="../images/icon.png">
 	<link rel="stylesheet" type="text/css" href="../css/style.css" media="all">		
 	<script src="../javascript/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+$(function(){
+    var url = window.location.pathname.split("/");
+    var menuItems = $('.menu ul li a');
+    var activated = false;
+
+    while(url.length) {
+        u = url.join("/");
+        menuItems.each(function() {
+            if(u === this.pathname){
+                $(this).parent().addClass('selected');
+                activated = true;
+            }
+        });
+
+        if (activated) {
+            break;
+        } else {
+            url.pop(); // remove "" element
+            url.pop();
+            url.push(""); // add "" element
+        }
+    }
+});
+</script>
 	<script type="text/javascript">		
 
 		$(document).ready(function(){
@@ -129,12 +154,6 @@
 			var row = obj.parentNode.rowIndex;
 			var cell = obj.cellIndex;	
 
-					
-			
-			
-
-			//alert(table.rows[row].cells[cell].children[0].children[0].disabled);
-
 			if(table.rows[row].cells[cell].children[0].children[0].disabled == false)
 			{
 				for(i=1; i<length; i++)
@@ -144,13 +163,7 @@
 				table.rows[row].cells[0].children[0].style.background="linear-gradient(to bottom, #d1e25c 0%, #b9d306 100%)";
 
 			}
-			
-			
-			//document.getElementById("time_up").value = table.rows[row].cells[1].innerHTML;
-			//document.getElementById("time_down").value = table.rows[row].cells[2].innerHTML;
-			//document.getElementById("flight_number").value = table.rows[row].cells[3].innerHTML;
-
-
+						
 		}
 		function l(event) {
                 with(event.target || event.srcElement) {
@@ -171,8 +184,6 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
 
   if (str.length==0) { 
 
-    //document.getElementById("livesearch").innerHTML="";    
-    //document.getElementById("livesearch").style.border="0px";
     return;
   }
   else if(str.length>=1)
@@ -189,8 +200,7 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
           {        
               
             document.getElementById(name).innerHTML=xmlhttp.responseText;
-           // document.getElementById("livesearch").size=5;
-            //document.getElementById("resultTable").style.border="1px solid #A5ACB2";
+          
           }
         }
         xmlhttp.open("GET","search.php?"+params,true);
@@ -210,18 +220,15 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
 
 	require_once "functions.php";
 
-	//found_path("Санкт-Петербург", NULL, "Иркутск");
 	
-
-
-
 					if(isset($_POST['flight_from']) or isset($_POST["number"]))
-					{							
+					{					
+						date_default_timezone_set("Europe/Helsinki"); 		
 						$today = date("Y-m-d");
 						if(isset($_POST["number"]))
 						{		
 							
-							$number = $_POST["number"];							
+							$number = sanitizeString($_POST["number"]);							
 							
 							$query  = "SELECT DISTINCT flight_from, flight_to FROM flights WHERE flight_number = '$number'";
 							$result = queryMysql($query);
@@ -234,19 +241,26 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
 	    					}
 						}
 						else
-						{								
-							$flight_from = $_POST['flight_from'];						
-							$flight_to = $_POST['flight_to'];
+						{	
+							$flight_from = $_POST['flight_from'];
+							$flight_to = $_POST['flight_to'];	
+							for ($i=0; $i < count($flight_from); $i++) { 
+								$flight_from[$i] = sanitizeString($flight_from[$i]);
+							}
+							for ($i=0; $i < count($flight_to); $i++) { 
+								$flight_to[$i] = sanitizeString($flight_to[$i]);
+							}
 						}
 
 
 						
-						$flight_date = $_POST['flight_date'];						
-						$count_peolpe = $_POST['count_peolpe'];	
-						$class = $_POST['class'];
+						$flight_date = $_POST['flight_date'];
+						for ($i=0; $i < count($flight_date); $i++) { 
+							$flight_date[$i] = sanitizeString($flight_date[$i]);
+						}												
+						$count_peolpe = sanitizeString($_POST['count_peolpe']);							
+						$class = sanitizeString($_POST['class']);
 
-						
-						
 
 						$selected = array(3);
 						$disabled = array(3);
@@ -273,6 +287,7 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
 					}
 					else 
 					{	
+						date_default_timezone_set("Europe/Helsinki"); 		
 						$today = date("Y-m-d");										
 						$flight_from[0] = $flight_from[1] = $flight_to[0] = $flight_to[1] = "";	
 						$count_peolpe = "1";					
@@ -296,32 +311,6 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
 
 					}
 
-
-
-
-	//echo "<datalist id='flight_from_list' size='3'>";
-	//$query = "SELECT DISTINCT flight_from FROM flights";
-	//$result = queryMysql($query);
-   	//$num    = $result->num_rows;    				
-	//for ($j = 0 ; $j < $num ; ++$j)
-	//{		
-	//	$row = $result->fetch_array(MYSQLI_ASSOC);      						
-	//					
-	//	echo "<option value=".$row['flight_from']." label=".$row['flight_from'].">";				
-	//}	
-	//echo "</datalist>";
-
-	//echo "<datalist id='flight_to_list'>";
-	//$query = "SELECT DISTINCT flight_to FROM flights";
-	//$result = queryMysql($query);
-   	//$num    = $result->num_rows;    				
-	//for ($j = 0 ; $j < $num ; ++$j)
-	//{		
-	//	$row = $result->fetch_array(MYSQLI_ASSOC);      						
-	//					
-	//	echo "<option value=".$row['flight_to']." label=".$row['flight_to'].">";				
-	//}	
-	//echo "</datalist>";
 
 echo<<<_END
 	<section class="content">
@@ -353,7 +342,7 @@ echo<<<_END
 							
 						<div class="inline_block owerflow_hide">
 							<h3>Город вылета</h3>
-							<input type="text" class="input width_1" name="flight_from[0]" list="flight_from" id="flight_from_id" placeholder="Откуда?"  value = "$flight_from[0]" autocomplete="off" onkeyup='checkValue()' onkeypress='showResult(this)' required>							
+							<input type="text" class="input width_1" name="flight_from[0]" list="flight_from" id="flight_from_id" placeholder="Откуда?"  value = "$flight_from[0]" autocomplete="off" onkeyup='checkValue()' onkeypress='showResult(this)' required pattern="[a-zA_Zа-яА-ЯёЁ0-9._-]{1,}" title="Сдержать символы из нижнего или верхнего регистра, цифры, символы '_', '.', '-'">							
 							<datalist id='flight_from'></datalist>
 						</div>								
 						<div class="inline_block button_swap_wrapper">	
@@ -361,7 +350,7 @@ echo<<<_END
 						</div>					
 						<div class="inline_block owerflow_hide">
 							<h3>Город назначения</h3>
-							<input type="text" class="input width_1" name="flight_to[0]" list="flight_to" id="flight_to_id" placeholder="Куда?"  value = "$flight_to[0]" autocomplete="off" onkeyup='checkValue()' onkeypress='showResult(this)' required>												
+							<input type="text" class="input width_1" name="flight_to[0]" list="flight_to" id="flight_to_id" placeholder="Куда?"  value = "$flight_to[0]" autocomplete="off" onkeyup='checkValue()' onkeypress='showResult(this)' required pattern="[a-zA_Zа-яА-ЯёЁ0-9._-]{1,}" title="Сдержать символы из нижнего или верхнего регистра, цифры, символы '_', '.', '-'">												
 							<datalist id='flight_to'></datalist>
 						</div>
 						<div class="clear_both"></div>	
@@ -400,9 +389,10 @@ echo<<<_END
 _END;
 					if(isset($_POST['flight_from']) or isset($_POST['number']))
 					{
+						date_default_timezone_set("Europe/Helsinki"); 
 						if(isset($_POST["number"]))
 						{				
-							$number = $_POST["number"];							
+							$number = sanitizeString($_POST["number"]);														
 							$query  = "SELECT DISTINCT flight_from, flight_to FROM flights WHERE flight_number = '$number'";
 							$result = queryMysql($query);
 	    					$num    = $result->num_rows;	    					
@@ -417,19 +407,24 @@ _END;
 						{								
 							$flight_from = $_POST['flight_from'];						
 							$flight_to = $_POST['flight_to'];
+							for ($i=0; $i < count($flight_from); $i++) { 
+								$flight_from[$i] = sanitizeString($flight_from[$i]);
+							}
+							for ($i=0; $i < count($flight_to); $i++) { 
+								$flight_to[$i] = sanitizeString($flight_to[$i]);
+							}
 						}
 
 
 						
-						$flight_date = $_POST['flight_date'];
-						$direction = $_POST['direction'];
+						
+						$direction = sanitizeString($_POST['direction']);
 
-						//if($direction == "one")
-						//{
+						$flight_date = $_POST['flight_date'];
+						for ($i=0; $i < count($flight_date); $i++) { 
+							$flight_date[$i] = sanitizeString($flight_date[$i]);
+						}											
 						
-						
-						
-					
 						
 						
 						$query = array(2);

@@ -34,10 +34,10 @@
 		require_once "functions.php";
 
 		if(isset($_POST['flight_number']) and !isset($_POST['insert_tickets']))
-		{							
-			$direction = $_POST['direction'];
-			$count_peolpe = $_POST['count_peolpe'];	
-			$class = $_POST['class'];
+		{	
+			$direction = sanitizeString($_POST['direction']);
+			$count_peolpe = sanitizeString($_POST['count_peolpe']);							
+			$class = sanitizeString($_POST['class']);
 			
 			
 
@@ -63,8 +63,15 @@
 				    						    				
 _END;
 
+									
 								$flight_number = $_POST['flight_number'];				
-								$flight_date = $_POST['flight_date'];	
+								$flight_date = $_POST['flight_date'];
+								for ($i=0; $i < count($flight_number); $i++) { 
+									$flight_number[$i] = sanitizeString($flight_number[$i]);
+								}	
+								for ($i=0; $i < count($flight_date); $i++) { 
+									$flight_date[$i] = sanitizeString($flight_date[$i]);
+								}	
 								
 								for ($i=0; $i < $direction; $i++) 
 								{ 					
@@ -252,9 +259,9 @@ echo<<<_END
 _END;
 
 		$purchase_date = date("Y-m-d");		
-		$direction = $_POST['direction'];
-		$count_peolpe = $_POST['count_peolpe'];	
-		$class = $_POST['class'];
+		$direction = sanitizeString($_POST['direction']);
+		$count_peolpe = sanitizeString($_POST['count_peolpe']);							
+		$class = sanitizeString($_POST['class']);
 		
 		$flight_date = $_POST['flight_date'];			
 		$flight_number = $_POST['flight_number'];
@@ -272,48 +279,56 @@ _END;
 		$document_type = $_POST['document_type'];	
 		$document_number = $_POST['document_number'];
 
+
+		for ($i=0; $i < count($flight_date); $i++) { 
+			$flight_date[$i] = sanitizeString($flight_date[$i]);
+		}			
+		for ($i=0; $i < count($flight_number); $i++) { 
+			$flight_number[$i] = sanitizeString($flight_number[$i]);
+		}
+		for ($i=0; $i < count($flight_from); $i++) { 
+			$flight_from[$i] = sanitizeString($flight_from[$i]);
+		}
+		for ($i=0; $i < count($flight_to); $i++) { 
+			$flight_to[$i] = sanitizeString($flight_to[$i]);
+		}
+		for ($i=0; $i < count($time_up); $i++) { 
+			$time_up[$i] = sanitizeString($time_up[$i]);
+		}
+		for ($i=0; $i < count($time_down); $i++) { 
+			$time_down[$i] = sanitizeString($time_down[$i]);
+		}
+		for ($i=0; $i < count($time_flight); $i++) { 
+			$time_flight[$i] = sanitizeString($time_flight[$i]);
+		}
+		for ($i=0; $i < count($firstname); $i++) { 
+			$firstname[$i] = sanitizeString($firstname[$i]);
+		}
+		for ($i=0; $i < count($lastname); $i++) { 
+			$lastname[$i] = sanitizeString($lastname[$i]);
+		}
+		for ($i=0; $i < count($birthday); $i++) { 
+			$birthday[$i] = sanitizeString($birthday[$i]);
+		}
+		for ($i=0; $i < count($sex); $i++) { 
+			$sex[$i] = sanitizeString($sex[$i]);
+		}
+		for ($i=0; $i < count($document_type); $i++) { 
+			$document_type[$i] = sanitizeString($document_type[$i]);
+		}
+		for ($i=0; $i < count($document_number); $i++) { 
+			$document_number[$i] = sanitizeString($document_number[$i]);
+		}
+		for ($i=0; $i < count($price); $i++) { 
+			$price[$i] = sanitizeString($price[$i]);
+		}
+
 		if($class == 'price_economy')
 			$class = "Эконом";
 		else if($class == 'price_standard')			
 			$class = "Стандарт";		
 		else $class = "Бизнес";
-			
-
-
-
-//		echo<<<_END
-//			<div>$direction</div>
-//			<div>$count_peolpe</div>
-//			<div>$class</div>
-//			<br>
-//_END;
-//		for ($i=0; $i < $direction; $i++) 
-//		{ 	
-//			echo<<<_END
-//			<div>$flight_date[$i]</div>
-//			<div>$flight_number[$i]</div>
-//			<div>$price[$i]</div>
-//			<div>$flight_from[$i]</div>
-//			<div>$flight_to[$i]</div>
-//			<div>$time_up[$i]</div>
-//			<div>$time_down[$i]</div>
-//			<div>$time_flight[$i]</div>
-//			<br>
-//_END;
-//		}
-//
-//		for($i=0; $i<$count_peolpe; $i++)
-//		{
-//			echo<<<_END
-//			<div>$firstname[$i]</div>
-//			<div>$lastname[$i]</div>
-//			<div>$birthday[$i]</div>
-//			<div>$sex[$i]</div>
-//			<div>$document_type[$i]</div>
-//			<div>$document_number[$i]</div>
-//			<br>
-//_END;
-//		}
+	
 
 		$user_id = $_SESSION['user_id'];
 
@@ -364,9 +379,7 @@ _END;
 	   	}
 
 	   	header("Refresh: 5; URL=my_tickets.php");
-	   	//header("Refresh: 8; URL=/MySite/my_tickets.php?flight_date%5B0%5D=$purchase_date&flight_date%5B1%5D=$purchase_date");/
-	   	//header("Location: /MySite/my_tickets.php?flight_date%5B0%5D=$purchase_date&flight_date%5B1%5D=$purchase_date");  	       	    		   		
-	   	//header("Location: /MySite/my_tickets.php");  	       	    		   		
+      	    		   		
 echo<<<_OUT
 		<div>
 			<span>Билеты забронированы.</span>

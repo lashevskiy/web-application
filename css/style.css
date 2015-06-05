@@ -82,9 +82,26 @@ div.topmenu {
 	width: 150px;
 }
 
+
+.float_left {
+	float: left;
+}
+
+.float_right {
+	float: right;
+}
+
+
 .width_0 {
 	width: 150px;
 }
+.width_11 {
+	width: 262px;
+}
+.width_12 {
+	width: 625px;
+}
+
 .width_1 {
 	width: 280px;
 }
@@ -93,6 +110,9 @@ div.topmenu {
 } 
 .width_3 {
 	width: 336px;	
+}
+.width_4 {
+	width: 175px;
 }
 
 .input {
@@ -174,6 +194,11 @@ a.account_in:hover ~ a.account_img {
 
 
 
+.margin_bottom {
+	margin-bottom: 80px !important;
+}
+
+
 /********************************Главное меню*/
 
 .selected {
@@ -200,10 +225,23 @@ a.account_in:hover ~ a.account_img {
     padding: 2px 5px;
     background-color: #f60;
 }
+.admin_menu {
+	background: #44B5D9;
+	
+}
+
+.admin_menu .menu ul li a { 
+	color: #fff; 
+	text-transform: none; 
+	text-shadow: 0px 0px 0px #0b4455;
+}
+
+.simple_menu{
+	background: #1683a3; 
+}
 
 .menu {
 	/*box-shadow: 0 0 7px #999;*/
-	background: #1683a3; 
 	/*border: 1px solid #016c8b;  границы*/ 
 	border-right: none; 
 	border-left: none;
@@ -287,6 +325,10 @@ div.anons p {
 }
 
 /*******************************Страница Авиабилеты*/
+
+.top_margin {
+	margin-top: 30px;
+}
 .hr_search_tickets {
  	border: none; 
     background-color: #1683a3;     
@@ -321,6 +363,18 @@ div.anons p {
 }
 .found_form p {
 	text-shadow:1px 1px 0 #fff;
+}
+
+#h2_class {
+	font-size: 22px; 
+	font-weight: normal; 	
+	color:#1683a3; 
+	line-height: 20px;	
+	margin-top: 10px;
+}
+
+.none_margin h3{
+	margin-left: 0px !important;
 }
 
 
@@ -395,6 +449,10 @@ div.found_form a:active {
 
 .select_class select {	
 	width: 306px;
+}
+
+.select_cl {
+	width: 288px !important;
 }
 
 .button {	
@@ -1148,6 +1206,14 @@ div.clear {clear:both;}
 }
 
 /*кнопка в таблице онлайн*/
+.button_online_height {
+	min-height: 40px !important;
+
+}
+.button_online_height2 {
+	min-height: 50px !important;
+
+}
 .button_online {	
 	border: 1px solid #d51c38; 
 	border-color: #e4eea1 #b4c733 #9db305 #d0e259 !important;

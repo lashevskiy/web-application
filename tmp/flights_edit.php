@@ -9,31 +9,6 @@
 	<link rel="shortcut icon" type="image/x-icon" href="../images/icon.png">
 	<link rel="stylesheet" type="text/css" href="../css/style.css" media="all">		
 	<script src="../javascript/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript">
-$(function(){
-    var url = window.location.pathname.split("/");
-    var menuItems = $('.menu ul li a');
-    var activated = false;
-
-    while(url.length) {
-        u = url.join("/");
-        menuItems.each(function() {
-            if(u === this.pathname){
-                $(this).parent().addClass('selected');
-                activated = true;
-            }
-        });
-
-        if (activated) {
-            break;
-        } else {
-            url.pop(); // remove "" element
-            url.pop();
-            url.push(""); // add "" element
-        }
-    }
-});
-</script>
 	<script type="text/javascript">		
 
 		$(document).ready(function(){
@@ -153,7 +128,13 @@ $(function(){
 			var length = table.rows.length;	
 			var row = obj.parentNode.rowIndex;
 			var cell = obj.cellIndex;	
+
+					
 			
+			
+
+			//alert(table.rows[row].cells[cell].children[0].children[0].disabled);
+
 			if(table.rows[row].cells[cell].children[0].children[0].disabled == false)
 			{
 				for(i=1; i<length; i++)
@@ -162,7 +143,14 @@ $(function(){
 				}
 				table.rows[row].cells[0].children[0].style.background="linear-gradient(to bottom, #d1e25c 0%, #b9d306 100%)";
 
-			}	
+			}
+			
+			
+			//document.getElementById("time_up").value = table.rows[row].cells[1].innerHTML;
+			//document.getElementById("time_down").value = table.rows[row].cells[2].innerHTML;
+			//document.getElementById("flight_number").value = table.rows[row].cells[3].innerHTML;
+
+
 		}
 		function l(event) {
                 with(event.target || event.srcElement) {
@@ -183,7 +171,8 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
 
   if (str.length==0) { 
 
-   
+    //document.getElementById("livesearch").innerHTML="";    
+    //document.getElementById("livesearch").style.border="0px";
     return;
   }
   else if(str.length>0)
@@ -200,7 +189,8 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
           {        
               
             document.getElementById(name).innerHTML=xmlhttp.responseText;
-           
+           // document.getElementById("livesearch").size=5;
+            //document.getElementById("resultTable").style.border="1px solid #A5ACB2";
           }
         }
         xmlhttp.open("GET","search.php?"+params,true);
@@ -222,15 +212,9 @@ var params='type=' + encodeURIComponent(name) + '&q=' + encodeURIComponent(str);
 
 
 					if(isset($_POST['submit']))
-					{																		
-						$flight_number = $_POST['flight_number'];
-						for ($i=0; $i < count($flight_number); $i++) { 
-							$flight_number[$i] = sanitizeString($flight_number[$i]);
-						}							
-						$flight_date = $_POST['flight_date'];
-						for ($i=0; $i < count($flight_date); $i++) { 
-							$flight_date[$i] = sanitizeString($flight_date[$i]);
-						}														
+					{	
+						$flight_number = $_POST['flight_number'];											
+						$flight_date = $_POST['flight_date'];													
 					}
 					else 
 					{											
@@ -260,7 +244,7 @@ echo<<<_END
 						
 						<div class="inline_block owerflow_hide">
 							<h3>Номер рейса</h3>
-							<input type="text" class="input width_1" name="flight_number[0]" placeholder="Только цифры"  value = "$flight_number[0]" autocomplete="off" onkeypress='showResult(this)' pattern="[0-9]{1,}" title="Сдержать только цифры.">	
+							<input type="text" class="input width_1" name="flight_number[0]" placeholder="Только цифры"  value = "$flight_number[0]" autocomplete="off" onkeypress='showResult(this)'>	
 							<datalist id='flight_from'></datalist>
 						</div>					
 						<div class="inline_block owerflow_hide">
@@ -276,11 +260,9 @@ echo<<<_END
 				<div class="clear"></div>
 _END;
 					if(isset($_POST['submit']))
-					{														
+					{						
+										
 						$flight_date = $_POST['flight_date'];
-						for ($i=0; $i < count($flight_date); $i++) { 
-							$flight_date[$i] = sanitizeString($flight_date[$i]);
-						}	
 						$direction = 1;
 						$class = "price_economy";
 
@@ -291,11 +273,7 @@ _END;
 
 						if(!empty($flight_number[0]))
 						{				
-							$flight_number = $_POST['flight_number'];
-							for ($i=0; $i < count($flight_number); $i++) { 
-								$flight_number[$i] = sanitizeString($flight_number[$i]);
-							}							
-
+							
 							$query[0]  = "SELECT DISTINCT schedule.flight_date, 
 														flights.flight_number, 
 														flights.flight_from, 

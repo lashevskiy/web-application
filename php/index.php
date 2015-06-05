@@ -7,7 +7,8 @@
 	<title>Airlife</title>
 	<meta charset="UTF-8"> 
 	<link rel="shortcut icon" type="image/x-icon" href="../images/icon.png">
-	<link rel="stylesheet" type="text/css" href="../css/style.css" media="all">			
+	<link rel="stylesheet" type="text/css" href="../css/style.css" media="all">		
+		
 </head>
 <body>
 <div class="page-wrapper">
