@@ -1,13 +1,14 @@
 # web-application
-This is web application (airline's website).  
-<br>To create them I use HTML, CSS, JS (jquery), AJAX, PHP, MySQL.
-<br>This web application needs database. Firstly create database in phpmyadmin (MySQL) and when database is done you can use this application.
+This is web application - airline's website. 
+This website was made with HTML, CSS, JavaScript (jquery), AJAX, PHP and MySQL. It's functionality relies on the database queries, so you must firslty create appropriate databases.
 
 <br>=============== Getting Started ===================
 <br>1. To create database use next php-file (/php/admin/setup.php).
-<br>2. Put web application folder (web-application) on your localserver.
-<br>3. In web browswer write next: localhost/web-application/php/admin/setup.php.
-<br>4. This file create database. Now you can use application.
-<br>5. Go to localhost/web-application/php/index.php 
+<br>2. Put the web application folder (web-application) on your localserver. 
+<br>3. In the web browswer navigation bar write the following: localhost/web-application/php/admin/setup.php. 
+<br>This script creates database. Now you can use application. 
+<br>4. To start using go to: localhost/web-application/php/index.php
 
-<br>! Change the user name and password from the database in file ../php/admin/setup.php if necessary. The default username is root and no password.
+<br>NOTE: 
+<br>1. If it's necessary, change the database username and password in the file ../php/admin/setup.php. The default username is "root" and the password is blank.
+<br>2. To use admin account enter with username "admin" and password "adminA1234". This account allows you to change all information on the site.   
