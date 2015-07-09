@@ -9,4 +9,6 @@ This website was made with HTML, CSS, JavaScript (jquery), AJAX, PHP and MySQL. 
 <br>This script creates database. Now you can use application. 
 <br>4. To start using go to: localhost/web-application/php/index.php
 
-<br>! If it's necessary, change the database username and password in the file ../php/admin/setup.php. The default username is "root" and the password is blank.
+<br>NOTE: 
+1. If it's necessary, change the database username and password in the file ../php/admin/setup.php. The default username is "root" and the password is blank.
+2. To use admin account enter with username "admin" and password "adminA1234". This account allows you to change all information on the site.   
