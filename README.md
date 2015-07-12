@@ -11,4 +11,4 @@ This website was made with HTML, CSS, JavaScript (jquery), AJAX, PHP and MySQL. 
 
 <br>NOTE: 
 <br>1. If it's necessary, change the database username and password in the file ../php/admin/setup.php. The default username is "root" and the password is blank.
-<br>2. To use admin account enter with username "admin" and password "adminA1234". This account allows you to change all information on the site.   
+<br>2. To use admin account enter with username "admin" and password "adminA1234". This account allows you to change all information on the database.   
